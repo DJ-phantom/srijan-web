@@ -1,26 +1,93 @@
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  /* Core Industrial Palette Design Tokens */
+  --bg-stone: #F4F3EF;
+  --bg-stone-surface: #E8E7E2;
+  --text-charcoal: #1A1A18;
+  --text-graphite-muted: #5C5D59;
+  --accent-copper: #C85A32;
+  --accent-copper-hover: #B04A25;
+  --accent-green: #1E3A2B;
+  --accent-green-muted: #2A4D3A;
+  
+  --bg-graphite-dark: #141514;
+  --bg-graphite-card: #1C1D1C;
+  --text-inverse: #F4F3EF;
+  --text-muted-inverse: #9A9B94;
+
+  --border-light: rgba(26, 26, 24, 0.12);
+  --border-dark: rgba(244, 243, 239, 0.12);
+
+  --radius-xs: 2px;
+  --radius-sm: 4px;
+  --radius-md: 6px;
+  --radius-lg: 8px;
+
+  --container-max-w: 1440px;
+
+  --ease-editorial: cubic-bezier(0.16, 1, 0.3, 1);
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+@theme {
+  --color-stone-bg: var(--bg-stone);
+  --color-stone-surface: var(--bg-stone-surface);
+  --color-charcoal-main: var(--text-charcoal);
+  --color-graphite-muted: var(--text-graphite-muted);
+  --color-copper: var(--accent-copper);
+  --color-copper-hover: var(--accent-copper-hover);
+  --color-industrial-green: var(--accent-green);
+  --color-graphite-dark: var(--bg-graphite-dark);
+  --color-graphite-card: var(--bg-graphite-card);
+  --color-text-inverse: var(--text-inverse);
+
+  --color-border-light: var(--border-light);
+  --color-border-dark: var(--border-dark);
+
+  --font-heading: var(--font-heading-main), system-ui, -apple-system, sans-serif;
+  --font-sans: var(--font-sans-main), system-ui, -apple-system, sans-serif;
+  --font-mono: var(--font-mono-code), monospace;
+
+  --radius-xs: var(--radius-xs);
+  --radius-sm: var(--radius-sm);
+  --radius-md: var(--radius-md);
+  --radius-lg: var(--radius-lg);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
-}
-
+/* Global Reset & Base Styling */
+html,
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background-color: var(--bg-stone);
+  color: var(--text-charcoal);
+  font-family: var(--font-sans-main), system-ui, -apple-system, sans-serif;
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Heading Font Utility */
+.font-heading {
+  font-family: var(--font-heading-main), system-ui, -apple-system, sans-serif;
+}
+
+/* Lenis Smooth Scroll Configuration */
+html.lenis,
+html.lenis body {
+  height: auto;
+}
+
+.lenis.lenis-smooth {
+  scroll-behavior: auto !important;
+}
+
+.lenis.lenis-smooth [data-lenis-prevent] {
+  overscroll-behavior: contain;
+}
+
+.lenis.lenis-stopped {
+  overflow: hidden;
+}
+
+.lenis.lenis-smooth iframe {
+  pointer-events: none;
 }

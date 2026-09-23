@@ -33,7 +33,7 @@ export default function CameraPage() {
           <div className="px-2 py-0.5 rounded-[2px] bg-white/75 border border-[var(--border-light)]/30 font-semibold text-[var(--text-charcoal)] uppercase">
             CV ENGINE: <span className="text-[var(--text-graphite-muted)] font-bold">NOT ENABLED</span>
           </div>
-          <div className="px-2 py-0.5 rounded-[2px] bg-black/5 border border-black/10 font-semibold text-[var(--text-graphite-muted)] uppercase">
+          <div className="px-2 py-0.5 rounded-[2px] bg-amber-500/10 border border-amber-500/30 font-semibold text-amber-950 uppercase">
             STATE: <span className="text-[var(--accent-copper)] font-bold">PLANNED</span>
           </div>
         </div>
@@ -51,10 +51,10 @@ export default function CameraPage() {
           </span>
         </div>
 
-        {/* Empty Technical Viewport Box */}
+        {/* Clean Technical Empty Viewport */}
         <div className="relative w-full h-52 md:h-60 rounded-[2px] border-2 border-dashed border-[var(--border-light)] bg-[var(--bg-stone)] flex flex-col items-center justify-center p-6 text-center space-y-2 select-none">
-          <div className="w-12 h-12 rounded-full bg-white/80 border border-[var(--border-light)]/60 flex items-center justify-center text-[var(--text-graphite-muted)]">
-            <Camera className="w-6 h-6 stroke-1" />
+          <div className="w-12 h-12 rounded-full bg-white/80 border border-[var(--border-light)]/60 flex items-center justify-center text-[var(--text-graphite-muted)] shadow-2xs">
+            <Camera className="w-6 h-6 stroke-1 text-[var(--text-graphite-muted)]" />
           </div>
           <div className="font-heading text-lg font-bold text-[var(--text-charcoal)]">
             CAMERA NOT CONNECTED
@@ -68,7 +68,7 @@ export default function CameraPage() {
         </div>
       </div>
 
-      {/* Current vs Planned Comparison Grid */}
+      {/* Current vs Planned Capability Grid */}
       <div className="grid grid-cols-1 md:grid-cols-2 gap-3 font-mono text-xs">
         {/* Current Prototype Capability */}
         <div className="p-4 rounded-[2px] bg-white/80 border border-[var(--border-light)]/40 shadow-xs space-y-2.5">
@@ -77,7 +77,7 @@ export default function CameraPage() {
               <CheckCircle2 className="w-3.5 h-3.5 text-emerald-700" />
               <span>CURRENT PROTOTYPE CAPABILITY</span>
             </span>
-            <span className="text-[9px] font-bold text-emerald-800 bg-emerald-500/10 px-1.5 py-0.5 rounded-[2px]">ACTIVE</span>
+            <span className="text-[9px] font-bold text-emerald-800 bg-emerald-500/10 border border-emerald-500/20 px-1.5 py-0.5 rounded-[2px]">ACTIVE</span>
           </div>
 
           <div className="grid grid-cols-2 gap-1.5 text-[10px] text-[var(--text-charcoal)] font-sans">
@@ -100,13 +100,13 @@ export default function CameraPage() {
               <Layers className="w-3.5 h-3.5 text-[var(--accent-copper)]" />
               <span>PLANNED VISION MODULE</span>
             </span>
-            <span className="text-[9px] font-bold text-[var(--accent-copper)] bg-[var(--accent-copper)]/10 px-1.5 py-0.5 rounded-[2px]">PLANNED</span>
+            <span className="text-[9px] font-bold text-amber-900 bg-amber-500/10 border border-amber-500/20 px-1.5 py-0.5 rounded-[2px]">PLANNED</span>
           </div>
 
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-1.5 text-[10px] text-[var(--text-graphite-muted)] font-sans">
             <div className="flex items-center gap-1.5"><span className="text-[var(--accent-copper)] font-bold">○</span> Belt surface inspection</div>
             <div className="flex items-center gap-1.5"><span className="text-[var(--accent-copper)] font-bold">○</span> Splice visual inspection</div>
-            <div className="flex items-center gap-1.5"><span className="text-[var(--accent-copper)] font-bold">○</span> Edge wear / visible damage</div>
+            <div className="flex items-center gap-1.5"><span className="text-[var(--accent-copper)] font-bold">○</span> Edge wear / surface damage</div>
             <div className="flex items-center gap-1.5"><span className="text-[var(--accent-copper)] font-bold">○</span> Foreign-object detection</div>
             <div className="flex items-center gap-1.5 col-span-1 sm:col-span-2"><span className="text-[var(--accent-copper)] font-bold">○</span> Image-assisted event evidence</div>
           </div>

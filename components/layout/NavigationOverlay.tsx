@@ -11,22 +11,24 @@ import { gsap } from "@/lib/gsap";
 interface NavigationOverlayProps {
   isOpen: boolean;
   onClose: () => void;
+  onSelectSlide?: (slideIndex: number) => void;
 }
 
 const navItems = [
-  { id: "01", title: "HOME", href: "#main-hero-section" },
-  { id: "02", title: "PLATFORM", href: "#approach" },
-  { id: "03", title: "MONITORING", href: "#monitoring" },
-  { id: "04", title: "INTELLIGENCE", href: "#intelligence" },
-  { id: "05", title: "DIGITAL BELT", href: "/digital-belt" },
-  { id: "06", title: "ALERTS", href: "#alerts" },
-  { id: "07", title: "CONTROL CENTER", href: "/control-center", isSpecial: true },
-  { id: "08", title: "ABOUT SRIJAN", href: "#about" },
+  { id: "01", title: "HOME", href: "#main-hero-carousel", slideIndex: 0 },
+  { id: "02", title: "PROBLEM / PLATFORM", href: "#main-hero-carousel", slideIndex: 1 },
+  { id: "03", title: "MONITORING", href: "#main-hero-carousel", slideIndex: 2 },
+  { id: "04", title: "INTELLIGENCE", href: "#main-hero-carousel", slideIndex: 3 },
+  { id: "05", title: "ALERTS", href: "#main-hero-carousel", slideIndex: 4 },
+  { id: "06", title: "DIGITAL BELT", href: "#main-hero-carousel", slideIndex: 5 },
+  { id: "07", title: "CONTROL CENTER", href: "/control-center", slideIndex: null, isSpecial: true },
+  { id: "08", title: "ABOUT SRIJAN", href: "#about", slideIndex: null },
 ];
 
 export default function NavigationOverlay({
   isOpen,
   onClose,
+  onSelectSlide,
 }: NavigationOverlayProps) {
   const lenis = useLenis();
   const overlayRef = useRef<HTMLDivElement>(null);
@@ -57,7 +59,7 @@ export default function NavigationOverlay({
       document.body.style.overflow = "hidden";
 
       // Scale hero section underneath for depth
-      const heroEl = document.getElementById("main-hero-section");
+      const heroEl = document.getElementById("main-hero-carousel") || document.getElementById("main-hero-section");
       if (heroEl) {
         gsap.to(heroEl, {
           scale: 0.97,
@@ -72,7 +74,7 @@ export default function NavigationOverlay({
       document.body.style.overflow = "";
 
       // Restore hero scale
-      const heroEl = document.getElementById("main-hero-section");
+      const heroEl = document.getElementById("main-hero-carousel") || document.getElementById("main-hero-section");
       if (heroEl) {
         gsap.to(heroEl, {
           scale: 1,
@@ -125,7 +127,11 @@ export default function NavigationOverlay({
   }, [isOpen, shouldRender]);
 
   // Handle clean exit animation before unmounting render or navigating
-  const handleClose = (href?: string) => {
+  const handleClose = (href?: string, slideIndex?: number | null) => {
+    if (slideIndex !== undefined && slideIndex !== null && onSelectSlide) {
+      onSelectSlide(slideIndex);
+    }
+
     if (overlayRef.current) {
       gsap.to(overlayRef.current, {
         yPercent: -100,
@@ -198,7 +204,7 @@ export default function NavigationOverlay({
                     href={item.href}
                     onClick={(e) => {
                       e.preventDefault();
-                      handleClose(item.href);
+                      handleClose(item.href, item.slideIndex);
                     }}
                     onMouseEnter={() => setHoveredIndex(index)}
                     onMouseLeave={() => setHoveredIndex(null)}

@@ -1,8 +1,9 @@
 "use client";
 
 import { useState } from "react";
-import { Tv, Cpu, Layers, Info } from "lucide-react";
+import { Tv, Layers, Info } from "lucide-react";
 import { useControlCenterData } from "@/hooks/useControlCenterData";
+import { CONTROL_CENTER_DISPLAY_LABELS } from "@/lib/controlCenterConfig";
 
 export default function LocalDisplayPage() {
   const { telemetry, activeAlerts, conditionSummary, decisionSummary, dataMode } = useControlCenterData();
@@ -26,15 +27,15 @@ export default function LocalDisplayPage() {
   const alertCountStr = String(activeAlerts.length);
 
   const liveLine1 = `BC-01 | SYS:${sysStr}`.padEnd(20, " ").slice(0, 20);
-  const liveLine2 = `SPD:${spdVal}m/s ALN:${alignVal}mm`.padEnd(20, " ").slice(0, 20);
+  const liveLine2 = `SPD:${spdVal}m/s ALN:${alignVal}`.padEnd(20, " ").slice(0, 20);
   const liveLine3 = `TMP:${tmpVal}C VIB:${vibVal}g`.padEnd(20, " ").slice(0, 20);
   const liveLine4 = `ALERTS:${alertCountStr} ACTIVE`.padEnd(20, " ").slice(0, 20);
 
-  // Non-active UI format preview strings
+  // Non-active UI format preview strings for UI demonstration
   const previewLine1 = "BC-01 | SYS:CRIT    ";
-  const previewLine2 = "SPD: 0.00m/s ALN:+3.2mm";
-  const previewLine3 = "TMP: 54.2C VIB: 0.85g";
-  const previewLine4 = "ALERTS: 2 ACTIVE    ";
+  const previewLine2 = "SPD:0.00m/s ALN:+3.2";
+  const previewLine3 = "TMP:82.4C VIB:0.89g";
+  const previewLine4 = "ALERTS:2 ACTIVE    ";
 
   const displayLine1 = previewMode === "LIVE" ? liveLine1 : previewLine1;
   const displayLine2 = previewMode === "LIVE" ? liveLine2 : previewLine2;
@@ -64,11 +65,11 @@ export default function LocalDisplayPage() {
           <div className="px-2 py-0.5 rounded-[2px] bg-amber-500/10 border border-amber-500/30 font-semibold text-amber-950 uppercase">
             PHYSICAL LCD: <strong>NOT CONNECTED</strong>
           </div>
-          <div className="px-2 py-0.5 rounded-[2px] bg-white/75 border border-[var(--border-light)]/30 font-semibold text-[var(--text-charcoal)]">
-            WEB REPRESENTATION: <strong className="text-[var(--accent-copper)]">ACTIVE</strong>
+          <div className="px-2 py-0.5 rounded-[2px] bg-emerald-500/10 border border-emerald-500/30 font-semibold text-emerald-950 uppercase">
+            WEB REPRESENTATION: <strong>ACTIVE</strong>
           </div>
           <div className="px-2 py-0.5 rounded-[2px] bg-white/75 border border-[var(--border-light)]/30 font-semibold text-[var(--text-charcoal)]">
-            DATA SOURCE: <strong>{dataMode === "BACKEND_CONNECTED" ? "SIH26008 BACKEND" : "DEMO_MOCK"}</strong>
+            DATA SOURCE: <strong>{CONTROL_CENTER_DISPLAY_LABELS.dataSource}</strong>
           </div>
           <div className="px-2 py-0.5 rounded-[2px] bg-black/5 border border-black/10 font-semibold text-[var(--text-graphite-muted)]">
             TARGET DEVICE: <span className="text-[var(--text-charcoal)]">ESP32-01</span>
@@ -84,7 +85,7 @@ export default function LocalDisplayPage() {
             <span>// 20×4 CHARACTER LCD HARDWARE EMULATION</span>
           </span>
 
-          {/* Optional Display Mode Preview Toggle */}
+          {/* Display Mode Preview Toggle */}
           <div className="flex items-center gap-1 bg-[var(--bg-stone)] p-0.5 rounded-[2px] border border-[var(--border-light)]/40 text-[9px]">
             <button
               onClick={() => setPreviewMode("LIVE")}
@@ -106,21 +107,21 @@ export default function LocalDisplayPage() {
         </div>
 
         {/* Industrial Dark Green 20x4 LCD Character Display */}
-        <div className="max-w-md mx-auto p-4 md:p-5 rounded-[4px] bg-[#081008] border-4 border-[#142614] shadow-xl space-y-2 select-none font-mono">
-          <div className="flex items-center justify-between text-[8.5px] text-emerald-800 tracking-wider">
+        <div className="max-w-md mx-auto p-4 md:p-5 rounded-[4px] bg-[#071207] border-4 border-[#122612] shadow-xl space-y-2 select-none font-mono">
+          <div className="flex items-center justify-between text-[8.5px] text-emerald-700/80 tracking-wider">
             <span>ESP32-WROOM-32 // I2C (0x27)</span>
             <span>HD44780 2004 MATRIX</span>
           </div>
 
-          {/* 4-Line Monospace Dot Matrix Characters */}
-          <div className="p-3.5 rounded-[2px] bg-[#061206] border border-[#163016] text-emerald-400 font-mono text-base md:text-lg tracking-[0.18em] leading-relaxed shadow-inner">
-            <div className="drop-shadow-[0_0_6px_rgba(52,211,153,0.35)] whitespace-pre">{displayLine1}</div>
-            <div className="drop-shadow-[0_0_6px_rgba(52,211,153,0.35)] whitespace-pre">{displayLine2}</div>
-            <div className="drop-shadow-[0_0_6px_rgba(52,211,153,0.35)] whitespace-pre">{displayLine3}</div>
-            <div className="drop-shadow-[0_0_6px_rgba(52,211,153,0.35)] whitespace-pre">{displayLine4}</div>
+          {/* 4-Line Monospace Dot Matrix Characters with Green Backlight Glow */}
+          <div className="p-3.5 rounded-[2px] bg-[#051105] border border-[#143214] text-emerald-400 font-mono text-base md:text-lg tracking-[0.18em] leading-relaxed shadow-[0_0_20px_rgba(52,211,153,0.12)_inset]">
+            <div className="drop-shadow-[0_0_5px_rgba(52,211,153,0.4)] whitespace-pre">{displayLine1}</div>
+            <div className="drop-shadow-[0_0_5px_rgba(52,211,153,0.4)] whitespace-pre">{displayLine2}</div>
+            <div className="drop-shadow-[0_0_5px_rgba(52,211,153,0.4)] whitespace-pre">{displayLine3}</div>
+            <div className="drop-shadow-[0_0_5px_rgba(52,211,153,0.4)] whitespace-pre">{displayLine4}</div>
           </div>
 
-          <div className="flex items-center justify-between text-[8px] text-neutral-600">
+          <div className="flex items-center justify-between text-[8px] text-neutral-500 font-mono">
             <span>BAUD: 115200</span>
             <span>
               {previewMode === "LIVE" ? "MODE: LIVE RECEPTION" : "MODE: FORMAT PREVIEW (NON-ACTIVE DEMO)"}
@@ -129,8 +130,8 @@ export default function LocalDisplayPage() {
         </div>
 
         {previewMode === "ALERT_FORMAT_PREVIEW" && (
-          <div className="text-[9.5px] text-amber-900 bg-amber-500/10 border border-amber-500/30 p-2 rounded-[2px] text-center">
-            DISPLAY FORMAT PREVIEW ONLY — Does not represent an active conveyor critical alert.
+          <div className="text-[9.5px] text-amber-900 bg-amber-500/10 border border-amber-500/30 p-2 rounded-[2px] text-center font-mono">
+            DISPLAY FORMAT PREVIEW ONLY — Demonstrates LCD 20×4 layout under critical alert conditions.
           </div>
         )}
       </div>

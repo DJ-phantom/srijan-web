@@ -7,22 +7,34 @@ interface HeaderProps {
   className?: string;
   isMenuOpen?: boolean;
   onToggleMenu?: () => void;
+  onNavigateSlide?: (slideIndex: number) => void;
 }
 
 const headerLinks = [
-  { label: "PLATFORM", href: "#approach" },
-  { label: "MONITORING", href: "#monitoring" },
-  { label: "INTELLIGENCE", href: "#intelligence" },
-  { label: "CONTROL CENTER", href: "/control-center" },
-  { label: "ABOUT", href: "#about" },
+  { label: "PLATFORM", href: "#main-hero-carousel", slideIndex: 1 },
+  { label: "MONITORING", href: "#main-hero-carousel", slideIndex: 2 },
+  { label: "INTELLIGENCE", href: "#main-hero-carousel", slideIndex: 3 },
+  { label: "DIGITAL BELT", href: "#main-hero-carousel", slideIndex: 5 },
+  { label: "CONTROL CENTER", href: "#control-center-preview", slideIndex: null },
+  { label: "ABOUT", href: "#about", slideIndex: null },
 ];
 
 export default function Header({
   className = "",
   isMenuOpen = false,
   onToggleMenu,
+  onNavigateSlide,
 }: HeaderProps) {
-  const handleScrollTo = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
+  const handleScrollTo = (
+    e: React.MouseEvent<HTMLAnchorElement>,
+    href: string,
+    slideIndex: number | null
+  ) => {
+    if (slideIndex !== null && onNavigateSlide) {
+      e.preventDefault();
+      onNavigateSlide(slideIndex);
+      return;
+    }
     if (href.startsWith("#")) {
       e.preventDefault();
       const target = document.querySelector(href);
@@ -47,7 +59,7 @@ export default function Header({
               <a
                 key={link.label}
                 href={link.href}
-                onClick={(e) => handleScrollTo(e, link.href)}
+                onClick={(e) => handleScrollTo(e, link.href, link.slideIndex)}
                 className="relative py-1 transition-colors duration-200 hover:text-[var(--accent-copper)] group"
               >
                 <span>{link.label}</span>

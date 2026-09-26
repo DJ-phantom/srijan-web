@@ -89,7 +89,7 @@ export default function ControlCenterPreviewSection() {
             ref={labelRef}
             className="mb-3 font-mono text-xs md:text-sm font-semibold tracking-[0.2em] text-[var(--text-graphite-muted)] uppercase flex items-center gap-3"
           >
-            <span className="text-[var(--accent-copper)]">07</span>
+            <span className="text-[var(--accent-copper)]">08</span>
             <span className="opacity-40">/</span>
             <span>CONTROL CENTER</span>
           </div>

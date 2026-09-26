@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import StoryCarousel from "@/components/experience/StoryCarousel";
+import DigitalTwinPreviewSection from "@/components/sections/DigitalTwinPreviewSection";
 import ControlCenterPreviewSection from "@/components/sections/ControlCenterPreviewSection";
 import ClosingSection from "@/components/sections/ClosingSection";
 import NavigationOverlay from "@/components/layout/NavigationOverlay";
@@ -20,10 +21,13 @@ export default function Home() {
         onToggleMenu={() => setIsNavOpen((prev) => !prev)}
       />
 
-      {/* 2. CONTROL CENTER PREVIEW */}
+      {/* 2. DIGITAL TWIN HOMEPAGE PREVIEW (SECTION 07) */}
+      <DigitalTwinPreviewSection />
+
+      {/* 3. CONTROL CENTER PREVIEW (SECTION 08) */}
       <ControlCenterPreviewSection />
 
-      {/* 3. ABOUT / SRIJAN CLOSING */}
+      {/* 4. ABOUT / SRIJAN CLOSING (SECTION 09) */}
       <ClosingSection />
 
       {/* FULLSCREEN SITE NAVIGATION OVERLAY */}

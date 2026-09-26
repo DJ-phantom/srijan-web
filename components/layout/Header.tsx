@@ -14,6 +14,7 @@ const headerLinks = [
   { label: "PLATFORM", href: "#main-hero-carousel", slideIndex: 1 },
   { label: "MONITORING", href: "#main-hero-carousel", slideIndex: 2 },
   { label: "INTELLIGENCE", href: "#main-hero-carousel", slideIndex: 3 },
+  { label: "DIGITAL TWIN", href: "#digital-twin-preview", slideIndex: null },
   { label: "OPERATOR DISPLAY", href: "#main-hero-carousel", slideIndex: 5 },
   { label: "CONTROL CENTER", href: "#control-center-preview", slideIndex: null },
   { label: "ABOUT", href: "#about", slideIndex: null },
@@ -54,7 +55,7 @@ export default function Header({
 
         {/* Desktop Quick Nav Links + Menu Trigger */}
         <div className="flex items-center gap-6 lg:gap-8">
-          <nav className="hidden lg:flex items-center gap-6 xl:gap-8 font-mono text-[13px] tracking-wider text-[var(--text-charcoal)]/80">
+          <nav className="hidden lg:flex items-center gap-4 xl:gap-6 2xl:gap-8 font-mono text-[12px] xl:text-[13px] tracking-wider text-[var(--text-charcoal)]/80 whitespace-nowrap">
             {headerLinks.map((link) => (
               <a
                 key={link.label}

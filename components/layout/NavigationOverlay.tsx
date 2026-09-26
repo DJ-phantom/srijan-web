@@ -21,8 +21,9 @@ const navItems = [
   { id: "04", title: "INTELLIGENCE", href: "#main-hero-carousel", slideIndex: 3 },
   { id: "05", title: "ALERTS & RESPONSE", href: "#main-hero-carousel", slideIndex: 4 },
   { id: "06", title: "OPERATOR DISPLAY", href: "#main-hero-carousel", slideIndex: 5 },
-  { id: "07", title: "CONTROL CENTER", href: "/control-center", slideIndex: null, isSpecial: true },
-  { id: "08", title: "ABOUT SRIJAN", href: "#about", slideIndex: null },
+  { id: "07", title: "DIGITAL TWIN", href: "#digital-twin-preview", slideIndex: null, isSpecial: true },
+  { id: "08", title: "CONTROL CENTER", href: "#control-center-preview", slideIndex: null, isSpecial: true },
+  { id: "09", title: "ABOUT SRIJAN", href: "#about", slideIndex: null },
 ];
 
 export default function NavigationOverlay({

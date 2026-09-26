@@ -12,6 +12,7 @@ import {
   Tv,
   Camera,
   Server,
+  Box,
 } from "lucide-react";
 
 const navModules = [
@@ -65,8 +66,25 @@ export default function ControlSidebar() {
         </nav>
       </div>
 
+      {/* Separate Spatial Experience Area */}
+      <div className="py-3 my-2 border-t border-[var(--border-light)]/40 space-y-2">
+        <div className="text-[9px] font-semibold text-[var(--accent-copper)] tracking-widest uppercase px-2">
+          // SPATIAL EXPERIENCE
+        </div>
+        <Link
+          href="/digital-twin"
+          className="w-full flex items-center justify-between px-3 py-2 rounded-[2px] text-[11px] font-bold tracking-wider uppercase border border-[var(--accent-copper)]/60 bg-amber-500/5 text-[var(--text-charcoal)] hover:bg-[var(--accent-copper)] hover:text-white transition-all duration-200"
+        >
+          <div className="flex items-center gap-2.5">
+            <Box className="w-4 h-4 text-[var(--accent-copper)]" />
+            <span>DIGITAL TWIN</span>
+          </div>
+          <span>→</span>
+        </Link>
+      </div>
+
       {/* Sidebar Footer Metadata */}
-      <div className="pt-4 border-t border-[var(--border-light)]/40 text-[10px] text-[var(--text-graphite-muted)] space-y-1">
+      <div className="pt-3 border-t border-[var(--border-light)]/40 text-[10px] text-[var(--text-graphite-muted)] space-y-1">
         <div className="font-semibold text-[var(--text-charcoal)]">SRIJAN CONTROL CENTER</div>
         <div className="opacity-70">SCIENTIFIC PLATFORM v1.0</div>
         <div className="text-[9px] text-[var(--accent-copper)] pt-1">SIH26008 ENGINE CONNECTED</div>

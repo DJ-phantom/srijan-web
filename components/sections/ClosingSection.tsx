@@ -40,7 +40,7 @@ export default function ClosingSection() {
       <Container className="relative z-10 w-full flex-grow flex flex-col items-center justify-between text-center space-y-6">
         {/* Section Numbering & Identity Tag */}
         <div className="font-mono text-xs md:text-sm font-semibold tracking-[0.2em] text-[var(--text-graphite-muted)] uppercase flex items-center gap-3">
-          <span className="text-[var(--accent-copper)]">08</span>
+          <span className="text-[var(--accent-copper)]">09</span>
           <span className="opacity-40">/</span>
           <span>ABOUT SRIJAN</span>
         </div>
@@ -71,23 +71,33 @@ export default function ClosingSection() {
           </div>
         </div>
 
-        {/* Dual Primary Action CTAs */}
-        <div className="flex flex-col sm:flex-row items-center gap-3 pt-1">
-          <Link
-            href="/control-center"
-            className="group relative inline-flex items-center justify-center gap-3 px-7 py-3 rounded-[4px] bg-[var(--text-charcoal)] text-[var(--bg-stone)] font-heading text-xs sm:text-sm font-bold tracking-wider uppercase transition-all duration-300 hover:bg-[var(--accent-copper)] hover:shadow-md cursor-pointer"
-          >
-            <span>ENTER CONTROL CENTER</span>
-            <span className="font-mono transition-transform duration-300 group-hover:translate-x-1.5">
-              →
-            </span>
-          </Link>
+        {/* Dual Primary Action CTAs & Inline Digital Twin Link */}
+        <div className="flex flex-col items-center space-y-3 pt-1">
+          <div className="flex flex-col sm:flex-row items-center gap-3">
+            <Link
+              href="/control-center"
+              className="group relative inline-flex items-center justify-center gap-3 px-7 py-3 rounded-[4px] bg-[var(--text-charcoal)] text-[var(--bg-stone)] font-heading text-xs sm:text-sm font-bold tracking-wider uppercase transition-all duration-300 hover:bg-[var(--accent-copper)] hover:shadow-md cursor-pointer"
+            >
+              <span>ENTER CONTROL CENTER</span>
+              <span className="font-mono transition-transform duration-300 group-hover:translate-x-1.5">
+                →
+              </span>
+            </Link>
+
+            <Link
+              href="/control-center/local-display"
+              className="inline-flex items-center justify-center gap-2 px-6 py-3 rounded-[4px] border border-[var(--border-light)] text-[var(--text-charcoal)] font-mono text-xs font-semibold tracking-wider uppercase hover:border-[var(--accent-copper)] hover:text-[var(--accent-copper)] transition-colors duration-200 cursor-pointer bg-white/40"
+            >
+              <span>VIEW OPERATOR DISPLAY</span>
+              <span>→</span>
+            </Link>
+          </div>
 
           <Link
-            href="/control-center/local-display"
-            className="inline-flex items-center justify-center gap-2 px-6 py-3 rounded-[4px] border border-[var(--border-light)] text-[var(--text-charcoal)] font-mono text-xs font-semibold tracking-wider uppercase hover:border-[var(--accent-copper)] hover:text-[var(--accent-copper)] transition-colors duration-200 cursor-pointer bg-white/40"
+            href="/digital-twin"
+            className="font-mono text-xs font-semibold text-[var(--accent-copper)] hover:underline inline-flex items-center gap-1 pt-1"
           >
-            <span>VIEW OPERATOR DISPLAY</span>
+            <span>DIGITAL TWIN LIVE SPATIAL MODEL</span>
             <span>→</span>
           </Link>
         </div>

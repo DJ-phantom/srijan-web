@@ -86,22 +86,22 @@ const slidesData = [
     copy: "When abnormal behaviour appears, the platform brings together condition evidence, severity and monitored component context so operators can quickly understand what needs attention.",
     bgImage: "/images/alerts_clean_ref.png",
     alt: "Industrial Conveyor Belt Tracking and Alert Response Infrastructure",
-    primaryCtaText: "EXPLORE DIGITAL BELT →",
+    primaryCtaText: "SEE OPERATOR DISPLAY →",
     secondaryCtaText: null,
   },
   {
     id: 5,
     numberLabel: "06",
-    sectionTag: "DIGITAL BELT",
-    eyebrow: "06 / DIGITAL BELT",
-    headlineLine1: "One System.",
-    headlineLine2: "",
-    headlineLine3: "One Living View.",
-    copy: "The Digital Belt connects condition data with monitored conveyor components, giving operators one spatial view of system health and context.",
+    sectionTag: "OPERATOR DISPLAY",
+    eyebrow: "06 / OPERATOR DISPLAY",
+    headlineLine1: "Essential Information.",
+    headlineLine2: "Right Where It Matters.",
+    headlineLine3: "",
+    copy: "A compact local operator display surfaces essential conveyor condition and alert information without requiring access to the full Control Center.",
     bgImage: "/images/ref_img_8.png",
-    alt: "Digital Belt Spatial Conveyor Architecture",
-    primaryCtaText: "EXPLORE DIGITAL BELT →",
-    secondaryCtaText: null,
+    alt: "Local Operator Field Display Visual Representation",
+    primaryCtaText: "VIEW OPERATOR DISPLAY →",
+    secondaryCtaText: "ENTER CONTROL CENTER →",
   },
 ];
 
@@ -479,34 +479,18 @@ const activeSensorLegend = [
   "L-01 LOAD",
 ];
 
-function DigitalBeltSpatialPanel({ active }: { active: boolean }) {
+function OperatorDisplayPanel({ active }: { active: boolean }) {
   const containerRef = useRef<HTMLDivElement>(null);
-  const [selectedZoneId, setSelectedZoneId] = useState<string>("ZONE C");
 
   useEffect(() => {
     if (!active || !containerRef.current) return;
 
     const ctx = gsap.context(() => {
-      const tl = gsap.timeline({ defaults: { ease: "power2.out" } });
-
-      const pathLine = containerRef.current?.querySelector<SVGPathElement>(".path-line");
-      const zoneNodes = containerRef.current?.querySelectorAll(".zone-node");
-      const detailCard = containerRef.current?.querySelector(".selected-detail-card");
-
-      if (pathLine) gsap.set(pathLine, { strokeDashoffset: 400 });
-      if (zoneNodes) gsap.set(zoneNodes, { opacity: 0, y: 6 });
-      if (detailCard) gsap.set(detailCard, { opacity: 0, y: 10 });
-
-      // Sequence: Path line -> nodes reveal -> detail card
-      if (pathLine) {
-        tl.to(pathLine, { strokeDashoffset: 0, duration: 0.7, ease: "sine.inOut" }, 0.1);
-      }
-      if (zoneNodes) {
-        tl.to(zoneNodes, { opacity: 1, y: 0, duration: 0.4, stagger: 0.08 }, 0.4);
-      }
-      if (detailCard) {
-        tl.to(detailCard, { opacity: 1, y: 0, duration: 0.45 }, 0.7);
-      }
+      gsap.fromTo(
+        containerRef.current,
+        { opacity: 0, y: 12 },
+        { opacity: 1, y: 0, duration: 0.6, ease: "power2.out" }
+      );
     }, containerRef);
 
     return () => {
@@ -516,188 +500,82 @@ function DigitalBeltSpatialPanel({ active }: { active: boolean }) {
 
   if (!active) return null;
 
-  const currentZone =
-    spatialZones.find((z) => z.id === selectedZoneId) || spatialZones[2];
-
   return (
-    <div ref={containerRef} className="w-full space-y-2.5 font-sans">
-      {/* Micro Concept Line */}
-      <div className="flex flex-wrap items-center justify-between gap-2 font-mono text-[9.5px] text-[var(--text-graphite-muted)] uppercase tracking-wider font-semibold">
-        <span className="flex items-center gap-1.5">
-          <span>CONDITION DATA</span>
-          <span className="opacity-40">→</span>
-          <span>COMPONENT CONTEXT</span>
-          <span className="opacity-40">→</span>
-          <span className="text-[var(--accent-copper)] font-bold">SPATIAL VIEW</span>
+    <div ref={containerRef} className="w-full space-y-3 font-sans select-none">
+      {/* Micro Architecture Strip */}
+      <div className="flex flex-wrap items-center gap-2 font-mono text-[10.5px] font-semibold tracking-wider uppercase text-[var(--text-graphite-muted)]">
+        <span className="flex items-center gap-1.5 text-[var(--text-charcoal)] font-bold">
+          <span className="h-1.5 w-1.5 rounded-full bg-[var(--accent-copper)] animate-pulse" />
+          <span>FIELD INTERFACE</span>
         </span>
-        <span className="hidden sm:inline text-[9px] text-[var(--text-charcoal)] font-bold">
-          CONVEYOR LINE BC-01
-        </span>
+        <span className="opacity-30">//</span>
+        <span>SENSE</span>
+        <span className="opacity-30">→</span>
+        <span>ANALYZE</span>
+        <span className="opacity-30">→</span>
+        <span>ALERT</span>
+        <span className="opacity-30">→</span>
+        <span className="text-[var(--accent-copper)] font-bold">DISPLAY</span>
       </div>
 
-      {/* Spatial Conveyor Path Container */}
-      <div className="p-2.5 bg-white/80 backdrop-blur-xs border border-[var(--border-light)]/80 rounded-[2px] shadow-2xs space-y-2.5">
-        {/* Desktop / Tablet Horizontal Engineering Conveyor Line */}
-        <div className="hidden sm:block relative w-full pt-1 pb-1">
-          {/* Connecting Line SVG */}
-          <div className="absolute top-[17px] left-[8%] right-[8%] h-[2px] pointer-events-none">
-            <svg className="w-full h-full overflow-visible" viewBox="0 0 100 2" preserveAspectRatio="none">
-              <line x1="0" y1="1" x2="100" y2="1" stroke="var(--border-light)" strokeWidth="1.5" />
-              <line
-                className="path-line"
-                x1="0"
-                y1="1"
-                x2="100"
-                y2="1"
-                stroke="var(--accent-copper)"
-                strokeWidth="2"
-                strokeDasharray="100"
-                strokeDashoffset="0"
-              />
-            </svg>
+      {/* Industrial Local Display / 20x4 LCD Visual Representation Container */}
+      <div className="p-3.5 sm:p-4 bg-white/85 backdrop-blur-xs border border-[var(--border-light)]/80 rounded-[2px] shadow-2xs space-y-3">
+        {/* Top Bar with Technical Disclosure Tag */}
+        <div className="flex flex-wrap items-center justify-between gap-2 font-mono text-[10px] text-[var(--text-graphite-muted)] border-b border-[var(--border-light)]/40 pb-2">
+          <div className="flex items-center gap-2 font-semibold text-[var(--text-charcoal)] uppercase">
+            <span>CONVEYOR BC-01 // LOCAL OPERATOR DISPLAY</span>
           </div>
-
-          {/* 4 Conveyor Nodes */}
-          <div className="grid grid-cols-4 gap-2 relative z-10">
-            {spatialZones.map((zn) => {
-              const isSelected = zn.id === selectedZoneId;
-              const isSplice = zn.isFocus;
-              return (
-                <button
-                  key={zn.id}
-                  onMouseEnter={() => setSelectedZoneId(zn.id)}
-                  onClick={() => setSelectedZoneId(zn.id)}
-                  className={`zone-node flex flex-col items-center text-center p-1.5 rounded-[2px] transition-all cursor-pointer ${
-                    isSelected
-                      ? "bg-white border border-[var(--accent-copper)] shadow-2xs"
-                      : "bg-white/40 border border-transparent hover:bg-white/70"
-                  }`}
-                >
-                  {/* Node Dot / Ring */}
-                  <div className="relative mb-1 flex items-center justify-center">
-                    <div
-                      className={`w-3 h-3 rounded-full transition-transform ${
-                        isSplice
-                          ? "bg-[var(--accent-copper)] ring-4 ring-[var(--accent-copper)]/20"
-                          : isSelected
-                          ? "bg-[var(--text-charcoal)] ring-2 ring-[var(--text-charcoal)]/20"
-                          : "bg-[var(--text-graphite-muted)]/40"
-                      }`}
-                    />
-                    {isSplice && (
-                      <span className="animate-ping absolute inline-flex h-3 w-3 rounded-full bg-[var(--accent-copper)] opacity-75" />
-                    )}
-                  </div>
-
-                  <span
-                    className={`font-mono text-[9px] font-bold uppercase ${
-                      isSplice ? "text-[var(--accent-copper)]" : "text-[var(--text-charcoal)]"
-                    }`}
-                  >
-                    {zn.id}
-                  </span>
-                  <span
-                    className={`font-sans text-[10px] uppercase font-semibold leading-tight mt-0.5 truncate max-w-full ${
-                      isSplice ? "text-[var(--accent-copper)] font-bold" : "text-[var(--text-charcoal)]"
-                    }`}
-                  >
-                    {zn.title}
-                  </span>
-                  {isSplice && (
-                    <span className="mt-1 px-1 py-0.2 bg-[var(--accent-copper)]/15 text-[8px] font-mono font-bold text-[var(--accent-copper)] uppercase rounded-[1px]">
-                      MONITORED
-                    </span>
-                  )}
-                </button>
-              );
-            })}
+          <div className="text-[9px] font-bold text-[var(--accent-copper)] uppercase tracking-wider bg-[var(--accent-copper)]/10 px-2 py-0.5 rounded-[1px]">
+            WEB REPRESENTATION // PHYSICAL LCD PLANNED
           </div>
         </div>
 
-        {/* Mobile Vertical Conveyor Path Stack */}
-        <div className="block sm:hidden space-y-1.5 font-mono text-[10px]">
-          {spatialZones.map((zn) => {
-            const isSelected = zn.id === selectedZoneId;
-            const isSplice = zn.isFocus;
-            return (
-              <button
-                key={zn.id}
-                onClick={() => setSelectedZoneId(zn.id)}
-                className={`w-full flex items-center justify-between p-2 rounded-[2px] border text-left transition-colors ${
-                  isSplice
-                    ? "bg-[var(--accent-copper)]/[0.08] border-[var(--accent-copper)] text-[var(--text-charcoal)] font-bold"
-                    : isSelected
-                    ? "bg-white border-[var(--border-light)] font-semibold"
-                    : "bg-white/50 border-transparent text-[var(--text-graphite-muted)]"
-                }`}
-              >
-                <div className="flex items-center gap-2 truncate">
-                  <span
-                    className={`text-[9px] font-bold ${
-                      isSplice ? "text-[var(--accent-copper)]" : "text-[var(--accent-copper)]/80"
-                    }`}
-                  >
-                    {zn.id}
-                  </span>
-                  <span className="uppercase text-[10.5px] truncate">{zn.title}</span>
-                </div>
-                {isSplice && (
-                  <span className="px-1.5 py-0.5 bg-[var(--accent-copper)]/15 text-[8px] font-bold text-[var(--accent-copper)] uppercase rounded-[1px] shrink-0">
-                    MONITORED FOCUS
-                  </span>
-                )}
-              </button>
-            );
-          })}
-        </div>
+        {/* 20x4 Character LCD Display Box */}
+        <div className="max-w-md mx-auto p-3.5 sm:p-4 rounded-[4px] bg-[#071207] border-4 border-[#122612] shadow-xl space-y-2 font-mono">
+          <div className="flex items-center justify-between text-[8.5px] text-emerald-700/80 tracking-wider">
+            <span>TARGET NODE // ESP32-01</span>
+            <span>DISPLAY // 20×4 CHARACTER LCD</span>
+          </div>
 
-        {/* Sensor Context Instrumentation Legend Strip */}
-        <div className="pt-1.5 border-t border-[var(--border-light)]/40 flex flex-wrap items-center justify-between gap-1 font-mono text-[9px] text-[var(--text-graphite-muted)]">
-          <span className="font-semibold text-[var(--text-charcoal)] uppercase">
-            ACTIVE SENSOR CHANNELS:
-          </span>
-          <div className="flex flex-wrap items-center gap-1.5">
-            {activeSensorLegend.map((s) => (
-              <span key={s} className="px-1.5 py-0.2 bg-[var(--bg-stone)]/70 border border-[var(--border-light)]/50 rounded-[1px]">
-                {s}
-              </span>
-            ))}
+          <div className="p-3 sm:p-3.5 rounded-[2px] bg-[#051105] border border-[#143214] text-emerald-400 font-mono text-sm sm:text-base tracking-[0.18em] leading-relaxed shadow-[0_0_20px_rgba(52,211,153,0.12)_inset]">
+            <div className="drop-shadow-[0_0_5px_rgba(52,211,153,0.4)] whitespace-pre">BC-01 | SYS:NORM   </div>
+            <div className="drop-shadow-[0_0_5px_rgba(52,211,153,0.4)] whitespace-pre">SPD:1.80m/s ALN:+0.1</div>
+            <div className="drop-shadow-[0_0_5px_rgba(52,211,153,0.4)] whitespace-pre">TMP:41.0C VIB:0.27g </div>
+            <div className="drop-shadow-[0_0_5px_rgba(52,211,153,0.4)] whitespace-pre">ALERTS:0 ACTIVE     </div>
+          </div>
+
+          <div className="flex items-center justify-between text-[8px] text-neutral-500 font-mono">
+            <span>INTERFACE // I2C</span>
+            <span>STATUS: FIELD VISIBILITY ACTIVE</span>
           </div>
         </div>
-      </div>
 
-      {/* Selected Component Detail Card */}
-      <div className="selected-detail-card p-2.5 bg-white/70 backdrop-blur-xs border-l-2 border-l-[var(--accent-copper)] border border-[var(--border-light)]/70 rounded-[2px] font-sans">
-        <div className="flex items-center justify-between font-mono text-[9.5px] text-[var(--text-graphite-muted)] uppercase mb-0.5">
-          <span className="flex items-center gap-1.5">
-            <span className="font-bold text-[var(--accent-copper)]">SELECTED COMPONENT:</span>
-            <span className="font-semibold text-[var(--text-charcoal)]">{currentZone.id}</span>
-          </span>
-          {currentZone.isFocus && (
-            <span className="text-[9px] text-[var(--accent-copper)] font-bold">
-              PRIMARY PROJECT FOCUS
-            </span>
-          )}
-        </div>
-
-        <h4 className="font-mono text-xs sm:text-sm font-bold text-[var(--text-charcoal)] uppercase tracking-wide">
-          {currentZone.title}
-        </h4>
-
-        <p className="text-[10.5px] text-[var(--text-graphite-muted)] leading-relaxed mt-0.5">
-          {currentZone.desc}
-        </p>
-
-        <div className="mt-1.5 pt-1 border-t border-[var(--border-light)]/40 flex flex-wrap items-center gap-1.5 font-mono text-[9px]">
-          <span className="text-[var(--text-graphite-muted)]">MONITORED SIGNALS:</span>
-          {currentZone.sensors.map((sn) => (
-            <span
-              key={sn}
-              className="px-1.5 py-0.2 bg-[var(--accent-copper)]/10 text-[var(--accent-copper)] font-semibold rounded-[1px]"
-            >
-              {sn}
-            </span>
-          ))}
+        {/* Technical Signal Summary Badges */}
+        <div className="grid grid-cols-2 sm:grid-cols-3 gap-2 pt-1 font-mono text-[10.5px]">
+          <div className="px-2.5 py-1.5 rounded-[1px] bg-white/60 border border-[var(--border-light)]/50 flex items-center justify-between">
+            <span className="text-[var(--text-graphite-muted)] text-[9.5px]">CONDITION:</span>
+            <span className="font-bold text-emerald-600">NORM</span>
+          </div>
+          <div className="px-2.5 py-1.5 rounded-[1px] bg-white/60 border border-[var(--border-light)]/50 flex items-center justify-between">
+            <span className="text-[var(--text-graphite-muted)] text-[9.5px]">SPEED:</span>
+            <span className="font-bold text-[var(--text-charcoal)]">1.80 m/s</span>
+          </div>
+          <div className="px-2.5 py-1.5 rounded-[1px] bg-white/60 border border-[var(--border-light)]/50 flex items-center justify-between">
+            <span className="text-[var(--text-graphite-muted)] text-[9.5px]">ALIGNMENT:</span>
+            <span className="font-bold text-[var(--text-charcoal)]">+0.1 mm</span>
+          </div>
+          <div className="px-2.5 py-1.5 rounded-[1px] bg-white/60 border border-[var(--border-light)]/50 flex items-center justify-between">
+            <span className="text-[var(--text-graphite-muted)] text-[9.5px]">TEMP:</span>
+            <span className="font-bold text-[var(--text-charcoal)]">41.0 °C</span>
+          </div>
+          <div className="px-2.5 py-1.5 rounded-[1px] bg-white/60 border border-[var(--border-light)]/50 flex items-center justify-between">
+            <span className="text-[var(--text-graphite-muted)] text-[9.5px]">VIBRATION:</span>
+            <span className="font-bold text-[var(--text-charcoal)]">0.27 g</span>
+          </div>
+          <div className="px-2.5 py-1.5 rounded-[1px] bg-white/60 border border-[var(--border-light)]/50 flex items-center justify-between">
+            <span className="text-[var(--text-graphite-muted)] text-[9.5px]">ALERTS:</span>
+            <span className="font-bold text-[var(--accent-copper)]">0 ACTIVE</span>
+          </div>
         </div>
       </div>
     </div>
@@ -1157,10 +1035,10 @@ export default function StoryCarousel({
             </div>
           )}
 
-          {/* Slide 06: Spatial Conveyor Path & Component Context */}
+          {/* Slide 06: Local Operator Field Display Visual */}
           {activeSlide === 5 && (
             <div className="fade-up-item w-full max-w-xl mb-6">
-              <DigitalBeltSpatialPanel active={activeSlide === 5} />
+              <OperatorDisplayPanel active={activeSlide === 5} />
             </div>
           )}
 
@@ -1186,10 +1064,10 @@ export default function StoryCarousel({
 
             {activeSlide === 5 && (
               <Link
-                href="/digital-belt"
+                href="/control-center/local-display"
                 className="group inline-flex items-center justify-center gap-3 px-7 py-3.5 rounded-[4px] bg-[var(--text-charcoal)] text-[var(--bg-stone)] font-sans text-xs font-semibold tracking-wider uppercase transition-all duration-300 hover:bg-[var(--accent-copper)] hover:shadow-md cursor-pointer"
               >
-                <span>EXPLORE DIGITAL BELT →</span>
+                <span>VIEW OPERATOR DISPLAY →</span>
               </Link>
             )}
 
@@ -1210,16 +1088,12 @@ export default function StoryCarousel({
             )}
 
             {activeSlide === 5 && (
-              <button
-                onClick={() => {
-                  const el = document.getElementById("control-center-preview");
-                  if (el) el.scrollIntoView({ behavior: "smooth" });
-                }}
+              <Link
+                href="/control-center"
                 className="inline-flex items-center justify-center gap-1.5 px-4 py-3.5 text-[var(--text-graphite-muted)] hover:text-[var(--accent-copper)] font-mono text-xs font-semibold tracking-wider uppercase transition-colors duration-200 cursor-pointer"
               >
-                <span>NEXT // CONTROL CENTER</span>
-                <span className="text-[var(--accent-copper)]">↓</span>
-              </button>
+                <span>ENTER CONTROL CENTER →</span>
+              </Link>
             )}
           </div>
         </Container>

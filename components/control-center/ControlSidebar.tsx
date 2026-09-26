@@ -12,8 +12,6 @@ import {
   Tv,
   Camera,
   Server,
-  Box,
-  ExternalLink,
 } from "lucide-react";
 
 const navModules = [
@@ -23,7 +21,7 @@ const navModules = [
   { href: "/control-center/intelligence", label: "INTELLIGENCE / AI", icon: Cpu },
   { href: "/control-center/analytics", label: "ANALYTICS", icon: BarChart3 },
   { href: "/control-center/alerts", label: "ALERTS & EVENTS", icon: AlertTriangle },
-  { href: "/control-center/local-display", label: "LOCAL 20×4 LCD", icon: Tv },
+  { href: "/control-center/local-display", label: "OPERATOR DISPLAY", icon: Tv },
   { href: "/control-center/camera", label: "CAMERA READINESS", icon: Camera },
   { href: "/control-center/system", label: "SYSTEM STATUS", icon: Server },
 ];
@@ -65,23 +63,6 @@ export default function ControlSidebar() {
             );
           })}
         </nav>
-
-        {/* Separated Digital Belt Experience */}
-        <div className="pt-3 border-t border-[var(--border-light)]/40">
-          <div className="text-[10px] font-semibold text-[var(--text-graphite-muted)] tracking-widest uppercase px-2 mb-2">
-            // SEPARATE EXPERIENCE
-          </div>
-          <Link
-            href="/digital-belt"
-            className="w-full flex items-center justify-between px-3 py-2.5 rounded-[2px] text-[11px] font-semibold tracking-wider uppercase text-[var(--accent-copper)] border border-[var(--accent-copper)]/30 bg-[var(--accent-copper)]/5 hover:bg-[var(--accent-copper)] hover:text-white transition-all duration-200"
-          >
-            <div className="flex items-center gap-2.5">
-              <Box className="w-4 h-4" />
-              <span>DIGITAL BELT 3D</span>
-            </div>
-            <ExternalLink className="w-3 h-3 opacity-60" />
-          </Link>
-        </div>
       </div>
 
       {/* Sidebar Footer Metadata */}

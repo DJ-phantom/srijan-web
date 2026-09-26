@@ -15,12 +15,12 @@ interface NavigationOverlayProps {
 }
 
 const navItems = [
-  { id: "01", title: "HOME", href: "#main-hero-carousel", slideIndex: 0 },
-  { id: "02", title: "PROBLEM / PLATFORM", href: "#main-hero-carousel", slideIndex: 1 },
+  { id: "01", title: "INTRO", href: "#main-hero-carousel", slideIndex: 0 },
+  { id: "02", title: "THE PROBLEM", href: "#main-hero-carousel", slideIndex: 1 },
   { id: "03", title: "MONITORING", href: "#main-hero-carousel", slideIndex: 2 },
   { id: "04", title: "INTELLIGENCE", href: "#main-hero-carousel", slideIndex: 3 },
-  { id: "05", title: "ALERTS", href: "#main-hero-carousel", slideIndex: 4 },
-  { id: "06", title: "DIGITAL BELT", href: "#main-hero-carousel", slideIndex: 5 },
+  { id: "05", title: "ALERTS & RESPONSE", href: "#main-hero-carousel", slideIndex: 4 },
+  { id: "06", title: "OPERATOR DISPLAY", href: "#main-hero-carousel", slideIndex: 5 },
   { id: "07", title: "CONTROL CENTER", href: "/control-center", slideIndex: null, isSpecial: true },
   { id: "08", title: "ABOUT SRIJAN", href: "#about", slideIndex: null },
 ];

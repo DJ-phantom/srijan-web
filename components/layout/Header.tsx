@@ -14,7 +14,7 @@ const headerLinks = [
   { label: "PLATFORM", href: "#main-hero-carousel", slideIndex: 1 },
   { label: "MONITORING", href: "#main-hero-carousel", slideIndex: 2 },
   { label: "INTELLIGENCE", href: "#main-hero-carousel", slideIndex: 3 },
-  { label: "DIGITAL BELT", href: "#main-hero-carousel", slideIndex: 5 },
+  { label: "OPERATOR DISPLAY", href: "#main-hero-carousel", slideIndex: 5 },
   { label: "CONTROL CENTER", href: "#control-center-preview", slideIndex: null },
   { label: "ABOUT", href: "#about", slideIndex: null },
 ];

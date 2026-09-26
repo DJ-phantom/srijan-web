@@ -6,12 +6,13 @@ import "./globals.css";
 export const metadata: Metadata = {
   title: "SRIJAN — Industrial Conveyor Intelligence Platform",
   description:
-    "Next-generation digital belt & predictive intelligence platform for heavy industrial and iron-ore conveyance systems.",
+    "Next-generation operator display & predictive intelligence platform for heavy industrial and iron-ore conveyance systems.",
   keywords: [
     "Industrial AI",
     "Conveyor Intelligence",
     "Predictive Maintenance",
-    "Digital Belt",
+    "Operator Display",
+    "Field Status Interface",
     "Iron Ore Mining",
   ],
 };

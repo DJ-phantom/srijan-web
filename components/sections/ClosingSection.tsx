@@ -84,10 +84,10 @@ export default function ClosingSection() {
           </Link>
 
           <Link
-            href="/digital-belt"
+            href="/control-center/local-display"
             className="inline-flex items-center justify-center gap-2 px-6 py-3 rounded-[4px] border border-[var(--border-light)] text-[var(--text-charcoal)] font-mono text-xs font-semibold tracking-wider uppercase hover:border-[var(--accent-copper)] hover:text-[var(--accent-copper)] transition-colors duration-200 cursor-pointer bg-white/40"
           >
-            <span>EXPLORE DIGITAL BELT</span>
+            <span>VIEW OPERATOR DISPLAY</span>
             <span>→</span>
           </Link>
         </div>
